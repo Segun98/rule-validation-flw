@@ -6,6 +6,7 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended: false
 }))
+
 //routes imports
 const home = require("./Routes")
 const ruleValidation = require("./Routes/rule_validation")
