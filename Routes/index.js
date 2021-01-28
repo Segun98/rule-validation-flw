@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
         twitter: "@Segun_OS"
     }
 
-    res.json({
+    res.status(200).json({
         message: "My Rule-Validation API",
         status: "success",
         data
