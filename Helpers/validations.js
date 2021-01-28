@@ -24,7 +24,9 @@ module.exports = {
             }
         }
 
-        if (typeof rule !== "object") {
+        //check if rule is an array or not an object
+        let arr = Array.isArray(rule)
+        if (typeof rule !== "object" || arr) {
             return {
                 message: "rule should be an object.",
                 status: "error",
