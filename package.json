@@ -1,0 +1,19 @@
+{
+  "name": "rulevalidation",
+  "version": "1.0.0",
+  "description": "A simple rule-validation API task for Flutterwave internship",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "Segun Olanitori",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "is-my-json-valid": "^2.20.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
