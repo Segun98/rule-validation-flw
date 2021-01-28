@@ -1,4 +1,3 @@
-var validator = require('is-my-json-valid')
 const {
     forEQ,
     forNEQ,
@@ -7,24 +6,6 @@ const {
     forCONTAINS
 } = require("./conditionValues")
 
-var validate = validator({
-    required: true,
-    type: 'object',
-    properties: {
-        field: {
-            required: true,
-            type: 'string'
-        },
-        condition: {
-            required: true,
-            type: 'string'
-        },
-        condition_value: {
-            required: true,
-            type: 'number'
-        }
-    }
-})
 
 module.exports = {
     //validations
@@ -101,10 +82,17 @@ module.exports = {
 
 
 
-        //missing rule field in data
+        //chck for missing rule field in data
         let ruleField = rule.field
 
-        if (ruleField && !data[ruleField]) {
+        //check if data is an array
+        let arr = Array.isArray(data)
+
+        //check if data is an array or string and the condition is contains, run the next conditon if not
+        if (arr || typeof data === "string" && rule.condition === "contains") {
+            //proceed
+            // console.log("its a string or array and condition is contains");
+        } else if (ruleField && !data[ruleField]) {
             return {
                 message: `field ${ruleField} is missing from data.`,
                 status: "error",
@@ -113,10 +101,12 @@ module.exports = {
         }
 
 
+
         const {
             condition
         } = rule
 
+        //call functions based on the condition value
         switch (condition) {
             case "eq":
                 return forEQ(data, rule)
